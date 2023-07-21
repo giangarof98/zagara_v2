@@ -8,11 +8,14 @@
     "start": "node back/server.js",
     "server": "nodemon back/server.js",
     "client": "npm run dev --prefix front",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node back/seeder.js",
+    "data:destroy": "node back/seeder.js -d"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.18.2",
     "mongoose": "^7.4.0"
   },
