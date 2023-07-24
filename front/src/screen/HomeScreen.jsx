@@ -1,29 +1,38 @@
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
 import {Row, Col} from 'react-bootstrap'
 import Product from '../components/Products.jsx'
-import axios from 'axios'
+import Loader from '../components/Loader.jsx';
+import Message from '../components/Message.jsx';
+// import axios from 'axios'
+
+import { useGetProductsQuery } from '../slices/productApiSlice.js'
 
 export default function HomeScreen(){
-    const [products, setProducts] = useState([]);
+    const {data: products, isLoading, error } = useGetProductsQuery();
 
-    useEffect(() => {
-        const fetchProducts = async () => {
-            const {data} = await axios.get('/api/products');
-            setProducts(data)
-        };
-        fetchProducts();
-    }, [])
+    // const [products, setProducts] = useState([]);
+
+    // useEffect(() => {
+    //     const fetchProducts = async () => {
+    //         const {data} = await axios.get('/api/products');
+    //         setProducts(data)
+    //     };
+    //     fetchProducts();
+    // }, [])
 
     return(
         <>
-            <h1>Latest Products</h1>
-            <Row>
-                {products.map((p) => (
-                    <Col key={p._id} sm={12} md={6} lg={4} xl={3}>
-                        <Product product={p}/>
-                    </Col>
-                ))}
-            </Row>
+            {isLoading ? (<Loader/>) : error ? (<Message variant='danger'>{error?.data?.message || error.error}</Message>) : (<>
+                <h1>Latest Products</h1>
+                <Row>
+                    {products.map((p) => (
+                        <Col key={p._id} sm={12} md={6} lg={4} xl={3}>
+                            <Product product={p}/>
+                        </Col>
+                    ))}
+                </Row>
+            
+            </>)}
         </>
     )
 }
