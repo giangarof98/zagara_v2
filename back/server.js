@@ -9,6 +9,7 @@ import cookieParser from 'cookie-parser';
 
 import productRoutes from './routes/productRoutes.js'
 import userRoutes from './routes/userRoutes.js'
+import orderRoutes from './routes/orderRoutes.js'
 
 const port = process.env.PORT || 80000;
 const app = express();
@@ -22,8 +23,9 @@ app.get('/', (req,res) => {
     res.send('api running...')
 });
 
-app.use('/api/products', productRoutes)
-app.use('/api/users', userRoutes)
+app.use('/api/products', productRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/order', orderRoutes)
 
 app.use(notFound);
 app.use(errorHandler);
