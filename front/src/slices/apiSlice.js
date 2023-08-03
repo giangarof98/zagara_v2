@@ -7,6 +7,6 @@ export const apiSlice = createApi({
     baseQuery,
     tagTypes: ['Product', 'Order', 'User'],
     endpoints: (builder) => ({}),
-    headers: { "Content-Type": "application/json" },
-    credentials: "include",
+    // headers: { "Content-Type": "application/json" },
+    // credentials: "include",
 })

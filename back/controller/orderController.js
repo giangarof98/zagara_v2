@@ -8,7 +8,7 @@ const addOrderItems = async(req,res) =>{
     const {
         orderItems, 
         shippingAddress, 
-        paymenMethod, 
+        paymentMethod, 
         itemsPrice, 
         taxPrice, 
         shippingPrice, 
@@ -21,12 +21,12 @@ const addOrderItems = async(req,res) =>{
             const order = new Order({
                 orderItems: orderItems.map((x) => ({
                     ...x,
-                    product:x._id,
+                    product: x._id,
                     _id: undefined
-                }) ),
+                })),
                 user: req.user._id, 
                 shippingAddress, 
-                paymenMethod, 
+                paymentMethod, 
                 itemsPrice, 
                 taxPrice, 
                 shippingPrice, 
