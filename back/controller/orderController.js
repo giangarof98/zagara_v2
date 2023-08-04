@@ -1,6 +1,6 @@
 // import asyncHandler from '../middleware/asynchandler.js'
 import Order from '../models/orderModel.js';
-
+import Product from '../models/productModel.js';
 // @desc    create new order
 // @route   POST /api/order
 // @access  Private
@@ -41,7 +41,7 @@ const addOrderItems = async(req,res) =>{
 // @route   GET /api/order/myorder
 // @access  Private
 const getMyOrders = async(req,res) =>{
-    const orders = await Order.find({user:req.user._id});
+    const orders = await Order.find({user: req.user._id});
     res.status(200).json(orders)
 }
 

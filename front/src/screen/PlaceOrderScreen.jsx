@@ -26,7 +26,8 @@ export default function PlaceOrderScreen(){
     }, [cart.paymentMethod, cart.shippingAddress.address, navigate])
     
     const dispatch = useDispatch()
-    const placeOrderHandler = async() => {
+    const placeOrderHandler = async(e) => {
+        // e.preventDefault()
         try {
             const res = await createOrder({
                 orderItems: cart.cartItems,
