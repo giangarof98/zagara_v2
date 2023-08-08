@@ -18,7 +18,7 @@ router.post('/', protect, asyncHandler(addOrderItems))
 
 router.get('/mine', protect, asyncHandler(getMyOrders))
 
-router.get('/:id', protect, admin, asyncHandler(getOrderById))
+router.get('/:id', protect, asyncHandler(getOrderById))
 router.put('/:id/pay', protect, asyncHandler(updateOrderToPaid))
 router.put('/:id/deliver', protect, admin, asyncHandler(updateOrderToDelivered))
 
