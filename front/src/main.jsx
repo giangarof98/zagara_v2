@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import {PaypalCriptProvider} from '@paypal/react-paypal-js';
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -48,7 +49,9 @@ const router = createBrowserRouter(
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <RouterProvider router={router} />
+      <PaypalCriptProvider deferLoading={true}>
+        <RouterProvider router={router} />
+      </PaypalCriptProvider>
     </Provider>
   </React.StrictMode>,
 )
