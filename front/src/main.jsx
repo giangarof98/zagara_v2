@@ -11,6 +11,7 @@ import App from './App.jsx'
 import './index.css'
 
 import PrivateRoute from './components/PrivateRoute.jsx'
+import AdminRoute from './components/AdminRoute.jsx'
 
 import HomeScreen from './screen/HomeScreen.jsx'
 import ProductScreen from './screen/ProductScreen.jsx'
@@ -22,6 +23,7 @@ import PaymentScreen from './screen/PaymentScreen.jsx'
 import PlaceOrderScreen from './screen/PlaceOrderScreen.jsx'
 import OrderScreen from './screen/OrderScreen.jsx'
 import ProfileScreen from './screen/ProfileScreen.jsx'
+import OrderListScreen from './screen/admin/OrderListScreen.jsx'
 
 // redux
 import { Provider } from 'react-redux'
@@ -43,6 +45,11 @@ const router = createBrowserRouter(
         <Route path='/placeorder' element={<PlaceOrderScreen/>}/>  
         <Route path='/orders/:id' element={<OrderScreen/>}/>
         <Route path='/profile' element={<ProfileScreen/>}/>    
+      </Route>
+
+      <Route path='' element={<AdminRoute/>}>
+        
+        <Route path='/admin/orderlist' element={<OrderListScreen/>}/>
       </Route>
     </Route>
   )

@@ -64,6 +64,20 @@ export default function Header(){
                             </LinkContainer>
                             )
                         }
+
+                        {userInfo && userInfo.isAdmin && (
+                            <NavDropdown title='Admin' id='adminmenu'>
+                                <LinkContainer to='/admin/productslist'>
+                                    <NavDropdown.Item>Products</NavDropdown.Item>
+                                </LinkContainer>
+                                <LinkContainer to='/admin/userlist'>
+                                    <NavDropdown.Item>Users list</NavDropdown.Item>
+                                </LinkContainer>
+                                <LinkContainer to='/admin/orderlist'>
+                                    <NavDropdown.Item>Orders</NavDropdown.Item>
+                                </LinkContainer>
+                            </NavDropdown>
+                        )}
                             
                         </Nav>
                     </Navbar.Collapse>
