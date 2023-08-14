@@ -22,4 +22,25 @@ const getById = async(req,res) => {
     }
 }
 
-export {getProducts, getById}
+
+// @desc    create product
+// @route   POST /api/products
+// @access  PRIVATE/ADMIN
+const createProduct = async(req,res) =>{
+    const product = new Product({
+        name: 'Sample name',
+        price: 0,
+        user: req.user._id,
+        category:'Sample category',
+        image: '/images/sample.jpg',
+        brand: 'Sample brand',
+        countInStock: 0,
+        numReviews: 0,
+        description: 'Sample description'
+    });
+
+    const createdProduct = await product.save();
+    res.status(201).json(createdProduct)
+}
+
+export {getProducts, getById, createProduct}

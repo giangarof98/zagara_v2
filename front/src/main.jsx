@@ -23,7 +23,9 @@ import PaymentScreen from './screen/PaymentScreen.jsx'
 import PlaceOrderScreen from './screen/PlaceOrderScreen.jsx'
 import OrderScreen from './screen/OrderScreen.jsx'
 import ProfileScreen from './screen/ProfileScreen.jsx'
+
 import OrderListScreen from './screen/admin/OrderListScreen.jsx'
+import ProductListScreen from './screen/admin/ProductListScreen.jsx'
 
 // redux
 import { Provider } from 'react-redux'
@@ -50,6 +52,7 @@ const router = createBrowserRouter(
       <Route path='' element={<AdminRoute/>}>
         
         <Route path='/admin/orderlist' element={<OrderListScreen/>}/>
+        <Route path='/admin/productslist' element={<ProductListScreen/>}/>
       </Route>
     </Route>
   )
