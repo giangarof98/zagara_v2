@@ -1,7 +1,12 @@
 import express from 'express';
 
 import asyncHandler from '../middleware/asynchandler.js'
-import { getProducts, getById, createProduct } from '../controller/productController.js';
+import { 
+    getProducts, 
+    getById, 
+    createProduct, 
+    updateProduct 
+} from '../controller/productController.js';
 
 import {protect, admin} from '../middleware/authMiddleware.js'
 
@@ -15,6 +20,8 @@ router.get('/', asyncHandler(getProducts))
 
 // fetch sigle product by id
 router.get('/:id', asyncHandler(getById))
+
+router.put('/:id', protect, admin, asyncHandler(updateProduct))
 
 
 export default router;
