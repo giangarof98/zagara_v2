@@ -5,7 +5,8 @@ import {
     getProducts, 
     getById, 
     createProduct, 
-    updateProduct 
+    updateProduct,
+    deleteProduct 
 } from '../controller/productController.js';
 
 import {protect, admin} from '../middleware/authMiddleware.js'
@@ -21,7 +22,11 @@ router.get('/', asyncHandler(getProducts))
 // fetch sigle product by id
 router.get('/:id', asyncHandler(getById))
 
+// update product
 router.put('/:id', protect, admin, asyncHandler(updateProduct))
+
+// delete product
+router.delete('/:id', protect, admin, asyncHandler(deleteProduct))
 
 
 export default router;

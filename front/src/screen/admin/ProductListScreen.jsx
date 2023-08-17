@@ -4,14 +4,26 @@ import {FaTimes, FaEdit, FaTrash} from 'react-icons/fa'
 import Message from '../../components/Message'
 import Loader from '../../components/Loader'
 import {toast} from 'react-toastify';
-import { useGetProductsQuery, useCreateProductMutation } from "../../slices/productApiSlice"
+import { 
+    useGetProductsQuery, 
+    useCreateProductMutation, 
+    useDeleteProductMutation 
+} from "../../slices/productApiSlice"
 
 export default function ProductListScreen(){
-    const {data:products, isLoading, error, refetch} = useGetProductsQuery()
+    const {data:products, isLoading, error, refetch} = useGetProductsQuery();
     const [createProduct, {isLoading: loadingCreate}] = useCreateProductMutation();
+    const [deleteProduct, {isLoading: loadingDelete}] = useDeleteProductMutation();
 
-    const deleteHandler = (id) => {
-        
+    const deleteHandler = async(id) => {
+        if(window.confirm('Are you sure?'))
+        try {
+            await deleteProduct(id)
+            toast.success('Product deleted successfully')
+            refetch()
+        } catch (err) {
+            toast.error(err?.data?.message || err.message)
+        }
     }
 
     const createProductHandler = async() => {
@@ -39,6 +51,7 @@ export default function ProductListScreen(){
             </Col>
         </Row>
         {loadingCreate && <Loader/>}
+        {loadingDelete && <Loader/>}
         {isLoading ? <Loader/> : error ? <Message variant='danger' /> : (
             <>
                 <Table striped hover responsive className="table-sm">
