@@ -7,6 +7,8 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import {logout} from '../slices/authSlice'
 
+import SearchBox from './SearchBox';
+
 export default function Header(){
     const {cartItems} = useSelector((state) => state.cart);
     const {userInfo} = useSelector((state) => state.auth);
@@ -36,6 +38,7 @@ export default function Header(){
                     <Navbar.Toggle aria-controls='basic-navbar-nav'/>
                     <Navbar.Collapse id='basic-navbar-nav'>
                         <Nav className='ms-auto'>
+                            <SearchBox/>
                             <LinkContainer to='/cart'>
                                 <Nav.Link><FaShoppingCart/> Cart {cartItems.length > 0 && (
                                     <Badge 
