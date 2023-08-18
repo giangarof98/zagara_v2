@@ -7,6 +7,7 @@ import Loader from '../components/Loader.jsx';
 import Message from "../components/Message.jsx";
 import {toast} from 'react-toastify';
 import { useGetProductsDetailsQuery, useCreateReviewsMutation } from "../slices/productApiSlice";
+import Meta from '../components/Meta.jsx';
 
 import { addToCart } from "../slices/cartSlice";
 
@@ -50,6 +51,7 @@ export default function ProductScreen(){
 
             {isLoading ? (<Loader/>) : error ? (<Message variant='danger'>{error?.data?.message || error.error}</Message>) : (
             <>
+                <Meta title={product.name}/>
                 <Row>
                     <Col md={5}>
                         <Image src={product.image} alt={product.name} fluid/>

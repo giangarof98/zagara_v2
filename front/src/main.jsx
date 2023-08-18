@@ -6,6 +6,7 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom'
+import {HelmetProvider} from 'react-helmet-async'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App.jsx'
 import './index.css'
@@ -72,10 +73,12 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <PayPalScriptProvider deferLoading={false}>
-        <RouterProvider router={router} />
-      </PayPalScriptProvider>
-    </Provider>
+    <HelmetProvider>
+      <Provider store={store}>
+        <PayPalScriptProvider deferLoading={false}>
+          <RouterProvider router={router} />
+        </PayPalScriptProvider>
+      </Provider>
+    </HelmetProvider>
   </React.StrictMode>
 )

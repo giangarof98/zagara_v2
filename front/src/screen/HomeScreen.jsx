@@ -7,6 +7,7 @@ import Message from '../components/Message.jsx';
 import { useParams } from 'react-router-dom';
 import Paginate from '../components/Paginate.jsx';
 import CarrouselProduct from '../components/CarrouselProduct.jsx';
+import Meta from '../components/Meta.jsx';
 // import axios from 'axios'
 
 import { useGetProductsQuery } from '../slices/productApiSlice.js'
@@ -27,6 +28,7 @@ export default function HomeScreen(){
 
     return(
         <>
+            <Meta/>
             {!keyword ? <CarrouselProduct/> : <Link to='/' className='btn btn-light mb-4'>Go Back</Link>}
             {isLoading ? (<Loader/>) : error ? (<Message variant='danger'>{error?.data?.message || error.error}</Message>) : (<>
                 <h1>Latest Products</h1>
