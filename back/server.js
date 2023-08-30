@@ -13,7 +13,7 @@ import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
 import uploadRoutes from './routes/uploadRoutes.js'
 
-const port = process.env.PORT || 80000;
+const port = process.env.PORT || 3000;
 const app = express();
 
 // body parser middleware
@@ -29,14 +29,15 @@ app.use('/api/upload', uploadRoutes)
 app.get('/api/config/paypal', (req,res) => 
     res.send({clienId: process.env.PAYPAL_CLIENT_ID})
 )
-const __dirname = path.resolve();
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 if(process.env.NODE_ENV === 'production'){
-    app.use(express.static(path.join(__dirname, '..', '/front/dist')))
+    const __dirname = path.resolve();
+    app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
+
+    app.use(express.static(path.join(__dirname, '/front/dist')))
 
     app.get('*', (req,res) => 
-        res.sendFile(path.resolve(__dirname, '..', 'front', 'dist', 'index.html'))
+        res.sendFile(path.resolve(__dirname, 'front', 'dist', 'index.html'))
     )
 } else {
     app.get('/', (req,res) => {
