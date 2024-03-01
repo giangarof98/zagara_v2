@@ -4,10 +4,12 @@ import { Link } from "react-router-dom"
 import Rating from "./Rating"
 
 export default function Products({product}){
+    console.log(product.image)
     return(
         <Card className="my-3 p-3">
             <Link to={`/product/${product._id}`}>
-                <Card.Img src={product.image} variant="top"/>
+                <Card.Img src={product.image[0].url} variant="top"/>
+                
             </Link>
 
             <Card.Body>

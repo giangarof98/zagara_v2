@@ -19,6 +19,7 @@ export default function ProductScreen(){
     const [comment, setComment] = useState('')
 
     const {data: product, refetch, isLoading, error} = useGetProductsDetailsQuery(productId);
+    console.log(product)
     const [createReview, {isLoading: loadingReview}] = useCreateReviewsMutation()
     const {userInfo} = useSelector((state) => state.auth)
 
@@ -54,7 +55,7 @@ export default function ProductScreen(){
                 <Meta title={product.name}/>
                 <Row>
                     <Col md={5}>
-                        <Image src={product.image} alt={product.name} fluid/>
+                        <Image src={product.image[0].url} alt={product.name} fluid/>
                     </Col>
 
                     <Col md={4}>

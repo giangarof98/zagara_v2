@@ -41,7 +41,7 @@ const createProduct = async(req,res) =>{
         price: 0,
         user: req.user._id,
         category:'Sample category',
-        image: '/images/sample.jpg',
+        // image: '',
         brand: 'Sample brand',
         countInStock: 0,
         numReviews: 0,
@@ -67,22 +67,46 @@ const updateProduct = async(req,res) =>{
     } = req.body;
 
     const product = await Product.findById(req.params.id);
+    // const imgs = req.files.map(f => ({
+    //     url: f.path, 
+    //     filename: f.filename, 
+    //     originalname: f.originalname}));
+    //     console.log(imgs)
+    //     if(req.body.deleteImages){
+    //         for(let filename of req.body.deleteImages){
+    //             await cloudinary.uploader.destroy(filename)
+    //         }
+    //         await post.updateOne({$pull: {image: {filename: { $in: req.body.deleteImages}}}})
+            
+    //     }
+    //     if (imgs.length > 0) {
+    //         product.image = imgs;
+    //         // product.image.push(...imgs);
+    //     }
 
-    if(product){
-        product.name = name;
-        product.price = price;
-        product.description = description;
-        product.image = image;
-        product.brand = brand;
-        product.category = category;
-        product.countInStock = countInStock;
+if(product){
+    product.name = name;
+    product.price = price;
+    product.description = description;
+    product.image = image
+    product.brand = brand;
+    product.category = category;
+    product.countInStock = countInStock;
 
-        const updatedProduct = await product.save();
-        res.json(updatedProduct)
-    } else {
-        res.status(404)
-        throw new Error('Resource not found')
-    }
+    const updatedProduct = await product.save();
+    res.json(updatedProduct)
+} else {
+    res.status(404)
+    throw new Error('Resource not found')
+}
+        // try {
+            
+        // } catch (error) {
+        //     console.log(`error: ${error}`)
+        // }
+    
+
+
 }
 
 // @desc    delete product

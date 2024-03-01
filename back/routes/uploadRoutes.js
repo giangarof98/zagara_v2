@@ -1,37 +1,14 @@
 import path from 'path'
 import express from 'express'
 import multer from 'multer'
+import { multerPost } from '../config/multer.js';
 const router = express.Router()
 
-const storage = multer.diskStorage({
-    destination(req,file,cb){
-        cb(null, 'uploads/')
-    },
-    filename(req,file,cb){
-        cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`)
-                 
-    }
-})
 
-function checkFile(file, cb){
-    const fileTypes = /jpg|jpeg|png/;
-    const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
-    const mimeType = fileTypes.test(file.mimeType);
-    if(extname && mimeType){
-        return cb(null, true)
-    }else{
-        cb('Images only!')
-    }
-}
-
-const upload = multer({
-    storage, checkFile
-})
-
-router.post('/', upload.single('image'), (req,res) => {
+router.post('/', multerPost, (req,res) => {
     res.send({
         message:'Image Uploaded',
-        image: `/${req.file.path}`
+        image: req.files[0].path
     })
 })
 

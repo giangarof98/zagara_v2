@@ -12,6 +12,7 @@ import {
 } from '../controller/productController.js';
 
 import {protect, admin} from '../middleware/authMiddleware.js'
+import { multerPost } from '../config/multer.js';
 
 const router = express.Router();
 
@@ -31,7 +32,7 @@ router.get('/', asyncHandler(getProducts))
 router.get('/:id', asyncHandler(getById))
 
 // update product
-router.put('/:id', protect, admin, asyncHandler(updateProduct))
+router.put('/:id', protect, admin, multerPost, asyncHandler(updateProduct))
 
 // delete product
 router.delete('/:id', protect, admin, asyncHandler(deleteProduct))

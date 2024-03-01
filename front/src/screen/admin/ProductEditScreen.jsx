@@ -56,7 +56,7 @@ export default function ProductEditScreen() {
         if(product){
             setName(product.name);
             setPrice(product.price);
-            setImage(product.image);
+            setImage(product.image[0].url);
             setBrand(product.brand);
             setCategory(product.category);
             setCountInStock(product.countInStock);
@@ -69,11 +69,12 @@ export default function ProductEditScreen() {
         // e.preventDefault()
         const formData = new FormData()
         formData.append('image', e.target.files[0])
-
+        
         try {
             const res = await uploadProductImage(formData).unwrap();
             toast.success(res.message);
             setImage(res.image)
+            console.log(res.image)
         } catch (err) {
             toast.error(err?.data?.message || err.error);
         }
@@ -117,6 +118,7 @@ export default function ProductEditScreen() {
                         value={image}
                         onChange={(e) => setImage(e.target.value)}
                         ></Form.Control>
+                        
 
                         <Form.Control
                         type="file"
